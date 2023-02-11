@@ -1,4 +1,4 @@
-import { formatDateToISO8601 } from "./formataData.js";
+import { formataDataISO8601 } from "./formataDataISO8601.js";
 
 var formNewEvent = document.querySelector("#form-new-event");
 
@@ -24,10 +24,10 @@ formNewEvent.addEventListener("submit", function (event) {
           break;
         case "scheduled":
           // Verifica se o input name é scheduled e se for transforma o conteudo dele em uma data formato ISO 8601
-          newEvent[inputs[i].name] = formatDateToISO8601(inputs[i].value);
+          newEvent[inputs[i].name] = formataDataISO8601(inputs[i].value);
           break;
         default:
-          // Adiciona o campo sem tratamento adicional
+          // caso seja de outro tipo, só acrescenta sem nenhum tratamento
           newEvent[inputs[i].name] = inputs[i].value;
       }
     }
