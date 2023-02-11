@@ -15,7 +15,12 @@ formNewEvent.addEventListener("submit", function (event) {
         // Verifica se o input name é atracoes e se for transforma o conteudo dele em uma array
         newEvent[inputs[i].name] = inputs[i].value.split(/\s*,\s*/);
       } else {
-        newEvent[inputs[i].name] = inputs[i].value;
+        if (inputs[i].name === "number_tickets") {
+          // Verifica se o input name é number_tickets e se for transforma o conteudo dele em um number
+          newEvent[inputs[i].name] = parseInt(inputs[i].value);
+        } else {
+          newEvent[inputs[i].name] = inputs[i].value;
+        }
       }
     }
   }
@@ -34,10 +39,11 @@ fetch(apiUrl, {
   },
   body: JSON.stringify(newEvent),
 })
-  .then((reponse) => response.json())
+  .then((response) => response.text())
   .then((data) => {
-    console.log(data);
+    console.log("Resposta do servidor:", data);
+    alert("Evento criado com sucesso!");
   })
   .catch((error) => {
-    console.error(error);
+    console.error("Erro ao processar a resposta do servidor: ", error);
   });
