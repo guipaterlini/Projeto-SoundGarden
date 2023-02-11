@@ -67,16 +67,26 @@
                 <input
                   type="text"
                   class="form-control"
-                  name="nome"
+                  name="name"
                   aria-describedby="nome"
                 />
+              </div>
+              <div class="mb-3">
+                <label for="poster" class="form-label">Link do imagem</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="poster"
+                  aria-describedby="poster"
+                />
+                <small>image do poster do evento</small>
               </div>
               <div class="mb-3">
                 <label for="atracoes" class="form-label">Atrações</label>
                 <input
                   type="text"
                   class="form-control"
-                  name="atracoes"
+                  name="attractions"
                   aria-describedby="atracoes"
                 />
                 <small>insira o nome dos artistas separados por vírgula</small>
@@ -84,7 +94,7 @@
               <div class="mb-3">
                 <label for="descricao" class="form-label">Descrição</label>
                 <textarea
-                  name="descricao"
+                  name="description"
                   class="form-control"
                   rows="5"
                 ></textarea>
@@ -93,7 +103,7 @@
                 <label for="data" class="form-label">Data</label>
                 <input
                   type="datetime"
-                  name="data"
+                  name="scheduled"
                   id="data"
                   class="form-control"
                   placeholder="00/00/00 00:00"
@@ -106,7 +116,7 @@
                 <input
                   type="number"
                   class="form-control"
-                  name="lotacao"
+                  name="number_tickets"
                   aria-describedby="lotacao"
                 />
               </div>
