@@ -1,3 +1,5 @@
+import { formatDateToISO8601 } from "./formataData.js";
+
 var formNewEvent = document.querySelector("#form-new-event");
 
 //Objeto contendo as informações do formulario
@@ -11,39 +13,43 @@ formNewEvent.addEventListener("submit", function (event) {
   // Passa pelo campos do formulario e coleta as informações colocando-as no newEvent Object
   for (let i = 0; i < inputs.length; i++) {
     if (inputs[i].type !== "submit") {
-      if (inputs[i].name === "attractions") {
-        // Verifica se o input name é atracoes e se for transforma o conteudo dele em uma array
-        newEvent[inputs[i].name] = inputs[i].value.split(/\s*,\s*/);
-      } else {
-        if (inputs[i].name === "number_tickets") {
+      switch (inputs[i].name) {
+        case "attractions":
+          // Verifica se o input name é atracoes e se for transforma o conteudo dele em uma array
+          newEvent[inputs[i].name] = inputs[i].value.split(/\s*,\s*/);
+          break;
+        case "number_tickets":
           // Verifica se o input name é number_tickets e se for transforma o conteudo dele em um number
           newEvent[inputs[i].name] = parseInt(inputs[i].value);
-        } else {
+          break;
+        case "scheduled":
+          // Verifica se o input name é scheduled e se for transforma o conteudo dele em uma data formato ISO 8601
+          newEvent[inputs[i].name] = formatDateToISO8601(inputs[i].value);
+          break;
+        default:
+          // Adiciona o campo sem tratamento adicional
           newEvent[inputs[i].name] = inputs[i].value;
-        }
       }
     }
   }
   console.log(newEvent);
-});
 
-console.log(JSON.stringify(newEvent));
+  //Enviando dados para a API
+  const apiUrl = "https://soundgarden-api.deta.dev/events";
 
-//Enviando dados para a API
-const apiUrl = "soundgarden-api.deta.dev/events";
-
-fetch(apiUrl, {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify(newEvent),
-})
-  .then((response) => response.text())
-  .then((data) => {
-    console.log("Resposta do servidor:", data);
-    alert("Evento criado com sucesso!");
+  fetch(apiUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newEvent),
   })
-  .catch((error) => {
-    console.error("Erro ao processar a resposta do servidor: ", error);
-  });
+    .then((response) => response.text())
+    .then((data) => {
+      console.log("Resposta do servidor:", data);
+      alert("Evento criado com sucesso!");
+    })
+    .catch((error) => {
+      console.error("Erro ao processar a resposta do servidor: ", error);
+    });
+});
