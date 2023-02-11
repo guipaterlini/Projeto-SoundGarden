@@ -11,7 +11,11 @@ formNewEvent.addEventListener("submit", function (event) {
   // Passa pelo campos do formulario e coleta as informações colocando-as no newEvent Object
   for (let i = 0; i < inputs.length; i++) {
     if (inputs[i].type !== "submit") {
-      newEvent[inputs[i].name] = inputs[i].value;
+      if (inputs[i].name === "atracoes") {
+        newEvent[inputs[i].name] = inputs[i].value.split(/\s*,\s*/);
+      } else {
+        newEvent[inputs[i].name] = inputs[i].value;
+      }
     }
   }
   console.log(newEvent);
