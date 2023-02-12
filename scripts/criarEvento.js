@@ -31,7 +31,16 @@ formNewEvent.addEventListener("submit", function (event) {
           break;
         case "scheduled":
           // Verifica se o input name é scheduled e se for transforma o conteudo dele em uma data formato ISO 8601
-          newEvent[inputs[i].name] = formataDataISO8601(inputs[i].value);
+
+          // Checa se o valor do input vem no formato DD/MM/YYYY HH:mm, caso 
+          let newEventDate = inputs[i].value
+          let regEx = /^\d{2}\/\d{2}\/\d{4} \d{2}:\d{2}$/;
+
+          if (!newEventDate.match(regEx)) {
+            alert("Data inválida. Por favor, insira uma data e horário no formato 00/00/0000 00:00.");
+            return;
+          }
+          newEvent[inputs[i].name] = formataDataISO8601(newEventDate);
           break;
         default:
           // caso seja de outro tipo, só acrescenta sem nenhum tratamento
