@@ -1,4 +1,5 @@
-import { formataDataISO8601 } from "./formataDataISO8601.js";
+import { formataDataISO8601 } from "./utils/formataDataISO8601.js";
+import { enviarEventoPost } from "./utils/novoEventoPost.js";
 
 var formNewEvent = document.querySelector("#form-new-event");
 
@@ -32,24 +33,7 @@ formNewEvent.addEventListener("submit", function (event) {
       }
     }
   }
-  console.log(newEvent);
 
   //Enviando dados para a API
-  const apiUrl = "https://soundgarden-api.deta.dev/events";
-
-  fetch(apiUrl, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(newEvent),
-  })
-    .then((response) => response.text())
-    .then((data) => {
-      console.log("Resposta do servidor:", data);
-      alert("Evento criado com sucesso!");
-    })
-    .catch((error) => {
-      console.error("Erro ao processar a resposta do servidor: ", error);
-    });
+  enviarEventoPost(newEvent);
 });
