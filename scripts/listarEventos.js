@@ -1,4 +1,5 @@
 import { listarEventosAdmin } from "./utils/listarEventosAdmin";
+import { listarEventosLandingPage } from "./utils/listarEventosLandingPage";
 
 const apiUrl = "https://soundgarden-api.deta.dev/events";
 
