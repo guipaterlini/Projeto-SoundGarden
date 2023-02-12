@@ -8,14 +8,7 @@ export const enviarEventoPost = function (event) {
     },
     body: JSON.stringify(event),
   })
-    .then((response) => {
-      // Para caso nao retorne 200
-      if (!response.ok) {
-        return new Error("Requisição falhou");
-      }
-
-      response.json();
-    })
+    .then((response) => response.json())
     .then((data) => {
       console.log("Resposta do servidor:", data);
       alert("Evento criado com sucesso!");
