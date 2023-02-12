@@ -19,7 +19,11 @@ const mostrarEventosAdmin = function (data) {
       })
     }</td>
     <td>${evento.name}</td>
-    <td>${evento.attractions}</td>
+    <td>${
+      evento.attractions.join(
+        ", "
+      ) /*.join é para colocar um espaço depois de virgula, deixando mais legivel*/
+    }</td>
     <td>
     <a href="reservas.html" class="btn btn-dark"
     >ver reservas</a>

@@ -18,7 +18,11 @@ const mostrarEventosPagEventos = function (data) {
         hour12: false,
       })
     }</h2>
-    <h4>${evento.attractions}</h4>
+    <h4>${
+      evento.attractions.join(
+        ", "
+      ) /*.join é para colocar um espaço depois de virgula, deixando mais legivel*/
+    }</h4>
     <p>${evento.description}</p>
     <a href="#" class="btn btn-primary">reservar ingresso</a>
     `;
