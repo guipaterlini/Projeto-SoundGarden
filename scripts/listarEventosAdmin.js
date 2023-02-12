@@ -6,10 +6,18 @@ const mostrarEventosAdmin = function (data) {
     const evento = data[i];
 
     const eventosListadosAdmin = document.createElement("tr");
-    // toLocaleString() Ajusta o formato da data para o formato usado no computador da pessoa
     eventosListadosAdmin.innerHTML = `
     <th scope="row">${i + 1}</th>
-    <td>${new Date(evento.scheduled).toLocaleString()}</td>
+    <td>${
+      //Transformando o formato da data que vem da API para DD/MM/YYYY HH:MM
+      new Date(evento.scheduled).toLocaleDateString("pt-BR") +
+      " " +
+      new Date(evento.scheduled).toLocaleTimeString("pt-BR", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+      })
+    }</td>
     <td>${evento.name}</td>
     <td>${evento.attractions}</td>
     <td>

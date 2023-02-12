@@ -6,16 +6,20 @@ const mostrarEventosPagEventos = function (data) {
     const evento = data[i];
 
     const eventosPaginaEventos = document.createElement("article");
-    eventosPaginaEventos.className = "evento card p-5 m-3"
+    eventosPaginaEventos.className = "evento card p-5 m-3";
     eventosPaginaEventos.innerHTML = `
-    <h2>nome do evento - 05/03/2022</h2>
-    <h4>Arctic Monkeys, The Kooks, Hiatus Kaiyote</h4>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro
-      aperiam sunt quo similique, dolorum consectetur inventore ipsam,
-      officiis neque natus eius harum alias quidem. Possimus nobis in
-      inventore tenetur asperiores.
-    </p>
+    <h2>${evento.name} - ${
+      //Transformando o formato da data que vem da API para DD/MM/YYYY HH:MM
+      new Date(evento.scheduled).toLocaleDateString("pt-BR") +
+      " " +
+      new Date(evento.scheduled).toLocaleTimeString("pt-BR", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+      })
+    }</h2>
+    <h4>${evento.attractions}</h4>
+    <p>${evento.description}</p>
     <a href="#" class="btn btn-primary">reservar ingresso</a>
     `;
     divTodosEventosLP.appendChild(eventosPaginaEventos);
