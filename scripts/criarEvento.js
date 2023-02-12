@@ -14,6 +14,7 @@ formNewEvent.addEventListener("submit", function (event) {
   // Passa pelo campos do formulario e coleta as informações colocando-as no newEvent Object
   for (let i = 0; i < inputs.length; i++) {
     if (inputs[i].type !== "submit") {
+
       // validando se o campo está vazio
       if (!inputs[i].value) {
         alert("Por favor preencha todos os campos.");
@@ -32,7 +33,7 @@ formNewEvent.addEventListener("submit", function (event) {
         case "scheduled":
           // Verifica se o input name é scheduled e se for transforma o conteudo dele em uma data formato ISO 8601
 
-          // Checa se o valor do input vem no formato DD/MM/YYYY HH:mm, caso 
+          // Checa se o valor do input vem no formato DD/MM/YYYY HH:mm 
           let newEventDate = inputs[i].value
           let regEx = /^\d{2}\/\d{2}\/\d{4} \d{2}:\d{2}$/;
 
