@@ -23,5 +23,5 @@ Link para acessar o projeto: https://guipaterlini.github.io/Projeto-SoundGarden/
 
 # Autores
 
-| [<img src="https://avatars.githubusercontent.com/guipaterlini" width=115><br><sub>Guilherme Paterlini</sub>](https://github.com/guipaterlini) |  [<img src="https://avatars.githubusercontent.com/JenniferOSF" width=115><br><sub>Jennifer Oliveira</sub>](https://github.com/JenniferOSF) |  [<img src="https://avatars.githubusercontent.com/guipaterlini" width=115><br><sub>Guilherme Paterlini</sub>](https://github.com/guipaterlini) |
-| :---: | :---: | :---: |
+| [<img src="https://avatars.githubusercontent.com/guipaterlini" width=115><br><sub>Guilherme Paterlini</sub>](https://github.com/guipaterlini) |  [<img src="https://avatars.githubusercontent.com/JenniferOSF" width=115><br><sub>Jennifer Oliveira</sub>](https://github.com/JenniferOSF) |  
+| :---: | :---: |
