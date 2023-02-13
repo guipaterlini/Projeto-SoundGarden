@@ -10,7 +10,7 @@ Link para acessar o projeto: https://guipaterlini.github.io/Projeto-SoundGarden/
 - Git e Git Flow.
 - Boas práticas.
 - Consumir dados de API com Javascript.
-- Navegar pelo DOM comJavascript.
+- Navegar pelo DOM com Javascript.
 - Exibir conteúdos dinâmicos nas páginas do site.
 - Enviar dados para API.
 
