@@ -21,7 +21,7 @@ const mostrarEventosPagEventos = function (data) {
     <h4>${
       evento.attractions.join(
         ", "
-      ) /*.join é para colocar um espaço depois de virgula, deixando mais legivel*/
+      ) /*.join é para colocar um espaço depois de virgula, deixando as atraçoes mais legiveis*/
     }</h4>
     <p>${evento.description}</p>
     <a href="#" class="btn btn-primary">reservar ingresso</a>

@@ -22,7 +22,7 @@ const mostrarEventosAdmin = function (data) {
     <td>${
       evento.attractions.join(
         ", "
-      ) /*.join é para colocar um espaço depois de virgula, deixando mais legivel*/
+      ) /*.join é para colocar um espaço depois de virgula, deixando as atraçoes mais legiveis*/
     }</td>
     <td>
     <a href="reservas.html" class="btn btn-dark"
