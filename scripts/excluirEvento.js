@@ -1,3 +1,5 @@
+import { formataDataToLocal } from "./utils/formataDataToLocal.js";
+
 // Identifica o ID que está na URL da pagina
 const url = new URL(window.location.href);
 const searchParams = new URLSearchParams(url.search);
@@ -12,15 +14,7 @@ const preencherFormExcluirEvento = function (data) {
   document.querySelector("#banner").value = banner;
   document.querySelector("#atracoes").value = attractions.join(",  ");
   document.querySelector("#descricao").value = description;
-  document.querySelector("#data").value =
-    // Para colocar no formato DD/MM/YYYY HH:MM
-    new Date(scheduled).toLocaleDateString("pt-BR") +
-    " " +
-    new Date(scheduled).toLocaleTimeString("pt-BR", {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: false,
-    });
+  document.querySelector("#data").value = formataDataToLocal(scheduled);
   document.querySelector("#lotacao").value = number_tickets;
 };
 
