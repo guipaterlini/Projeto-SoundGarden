@@ -50,8 +50,9 @@ btnExcluirEvento.addEventListener("click", function (event) {
     },
   })
     .then((response) => response.text())
-    .then((result) => {
-      console.log(result);
+    .then(() => {
+      // usado o replace para que o usuario nao possa voltar a pagina do excluir-evento.html, ja que o evento foi deletado
+      window.location.replace("./admin.html");
       alert("Evento deletado com sucesso!");
     })
     .catch((error) => console.log("error", error));
