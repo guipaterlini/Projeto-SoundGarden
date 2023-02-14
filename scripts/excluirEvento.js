@@ -40,6 +40,7 @@ getByIdExcluirDados();
 // no click excluir o evento
 const btnExcluirEvento = document.querySelector("#btn-excluir-para-sempre");
 btnExcluirEvento.addEventListener("click", function (event) {
+  const nomeEvento = document.querySelector("#nome").value
   event.preventDefault();
 
   fetch(apiUrl + id, {
@@ -53,7 +54,7 @@ btnExcluirEvento.addEventListener("click", function (event) {
     .then(() => {
       // usado o replace para que o usuario nao possa voltar a pagina do excluir-evento.html, ja que o evento foi deletado
       window.location.replace("./admin.html");
-      alert("Evento deletado com sucesso!");
+      alert("Evento " + nomeEvento + " deletado com sucesso!");
     })
     .catch((error) => console.log("error", error));
 });
