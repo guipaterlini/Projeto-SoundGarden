@@ -10,9 +10,17 @@ const preencherFormExcluirEvento = function (data) {
     data;
   document.querySelector("#nome").value = name;
   document.querySelector("#banner").value = banner;
-  document.querySelector("#atracoes").value = attractions;
+  document.querySelector("#atracoes").value = attractions.join(",  ");
   document.querySelector("#descricao").value = description;
-  document.querySelector("#data").value = scheduled;
+  document.querySelector("#data").value =
+    // Para colocar no formato DD/MM/YYYY HH:MM
+    new Date(scheduled).toLocaleDateString("pt-BR") +
+    " " +
+    new Date(scheduled).toLocaleTimeString("pt-BR", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    });
   document.querySelector("#lotacao").value = number_tickets;
 };
 
