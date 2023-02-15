@@ -1,3 +1,5 @@
+import { formataDataToLocal } from "./utils/formataDataToLocal.js";
+
 // função para mostrar todos os eventos na pagina de admin
 const mostrarEventosAdmin = function (data) {
   const tbodyEventosAdmin = document.querySelector("#tbody-eventosadmin");
@@ -10,14 +12,7 @@ const mostrarEventosAdmin = function (data) {
     <th scope="row">${i + 1}</th>
     <td>${
       //Transformando o formato da data que vem da API para DD/MM/YYYY HH:MM
-      new Date(evento.scheduled).toLocaleDateString("pt-BR") +
-      " " +
-      new Date(evento.scheduled).toLocaleTimeString("pt-BR", {
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false,
-      })
-    }</td>
+      formataDataToLocal(evento.scheduled)}</td>
     <td>${evento.name}</td>
     <td>${
       evento.attractions.join(
