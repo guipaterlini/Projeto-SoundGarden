@@ -1,3 +1,5 @@
+import { formataDataToLocal } from "./utils/formataDataToLocal.js";
+
 // função para mostrar todos os eventos na pagina de eventos.html
 const mostrarEventosPagEventos = function (data) {
   const divTodosEventosLP = document.querySelector("#divTodosEventos");
@@ -10,13 +12,7 @@ const mostrarEventosPagEventos = function (data) {
     eventosPaginaEventos.innerHTML = `
     <h2>${evento.name} - ${
       //Transformando o formato da data que vem da API para DD/MM/YYYY HH:MM
-      new Date(evento.scheduled).toLocaleDateString("pt-BR") +
-      " " +
-      new Date(evento.scheduled).toLocaleTimeString("pt-BR", {
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false,
-      })
+      formataDataToLocal(evento.scheduled)
     }</h2>
     <h4>${
       evento.attractions.join(
