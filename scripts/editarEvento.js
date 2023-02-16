@@ -1,103 +1,27 @@
-const  endpoint = 'https://soundgarden-api.deta.dev/events/:id';
+import { formataDataToLocal } from "./utils/formataDataToLocal.js";
 
-// Buscar a API de eventos por ID
+const  endpoint = "https://soundgarden-api.vercel.app/events";
 
-function editarEvento() {
-    let params = {
-        method: 'GET',
-        redirect: 'follow'
-    };
-
-    fetch(endpoint, params)
-        .then(response => {
-            return response.json();
-        })
-        .then(data => {
-            let btnEditar = document.getElementsByClassName('btn btn-secondary');
-            btnEditar.textContext = data.id;
-            // btnEditar.addEventListener('click', () => {
-                //console.log(windon.location.pathname)
-                // windon.location.href = 'editar-evento.html'
-    
-            // })
-        })
-        .catch(error => {
-            console.log('error', error);
-        })
-
-}
-
-editarEvento();
-
-// Buscar a API de atualizar (put)
-
-function atualizarEvento() {
-    let paramsAtualizar = {
-        method: 'PUT',
-        body: raw,
-        redirect: 'follow'
-    };
-
-    fetch(endpoint, paramsAtualizar)
-        .then(response => response.text())
-        .then(data => console.log(data))
-        .catch(error => console.log('error', error));
-}
-atualizarEvento();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const apiUrl = "https://soundgarden-api.deta.dev/events/:id";
-
-// Identifica o ID que está na URL da pagina
 const url = new URL(window.location.href);
-const searchId = new URLSearchParams(url.search).get("id");
-
+const searchParams = new URLSearchParams(url.search);
+const id = searchParams.get("id")
 
 // Preenche o formulario com os dados que vem da api
 const preencherFormEditarEvento = function (data) {
-  // Para deixar o codigo mais curto eu usei 'desestruturação de objetos'
-  const { name, banner, attractions, description, tickets } =
+  const { name, poster, attractions, description, scheduled, number_tickets } =
     data;
   document.querySelector("#nome").value = name;
-  document.querySelector("#banner").value = banner;
+  document.querySelector("#banner").value = poster;
   document.querySelector("#atracoes").value = attractions.join(",  ");
   document.querySelector("#descricao").value = description;
-  document.querySelector("#lotacao").value = tickets;
+  document.querySelector("#data").value = formataDataToLocal(scheduled);
+  document.querySelector("#lotacao").value = number_tickets;
 };
 
 // Busca na api pelos dados do event a ser excluido
 
-const editarEvento = function (event) {
-  fetch(apiUrl, {
+const editarDados = function (e) {
+  fetch(endpoint + id, {
     method: "GET",
     redirect: "follow",
     headers: {
@@ -109,29 +33,26 @@ const editarEvento = function (event) {
     .catch((error) => console.log("error", error));
 };
 
-editarEvento();
+editarDados();
 
-// no click excluir o evento
-const btnEditarEvento = document.querySelector("#btn-secondary");
-btnEditarEvento.addEventListener("click", function (event) {
+// no click enviar o evento
+const btnEnviar = document.getElementById('btn-enviar');
+btnEnviar.addEventListener("click", function (e) {
   const nomeEvento = document.querySelector("#nome").value
-  event.preventDefault();
+  e.preventDefault();
 
-  fetch(apiUrl, {
-    method: "GET",
+  fetch(endpoint + id, {
+    method: "PUT",
+    body: raw,
     redirect: "follow",
     headers: {
       "Content-Type": "application/json",
     },
   })
     .then((response) => response.text())
-    .then(result => console.log(result))
     .then(() => {
-      // usado o replace para que o usuario nao possa voltar a pagina do excluir-evento.html, ja que o evento foi deletado
-      window.location.replace("./editar-evento.html");
-      alert("Salvo" + nomeEvento);
+      window.location.replace("./admin.html");
+      alert("Evento " + nomeEvento + " editado com sucesso!");
     })
     .catch((error) => console.log("error", error));
 });
-
-
