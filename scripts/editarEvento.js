@@ -3,6 +3,7 @@ import { lerFormulario } from "./utils/lerFormulario.js";
 import { preencherFormulario } from "./utils/preencherFormulario.js";
 import { lerIdUrl } from "./utils/lerIdUrl.js";
 
+//função que pega o ID que veio pela URL
 const id = lerIdUrl();
 
 // Busca na api pelos dados do event a ser excluido
@@ -14,6 +15,7 @@ fetch(endpoint + id, {
   },
 })
   .then((response) => response.json())
+  // função que prenche o formulario com os dados que vieram pela api
   .then((data) => preencherFormulario(data))
   .catch((error) => console.log("error", error));
 
@@ -24,9 +26,9 @@ formEditarEvento.addEventListener("submit", function (event) {
   event.preventDefault();
 
   const inputs = formEditarEvento.elements;
-
+  // função que le todos os inputs do formulario e salva em objeto
   lerFormulario(inputs, eventoEditado);
-
+  // função que envia os dados salvos no objeto para para atualizarem o banco de dados
   fetch(endpoint + id, {
     method: "PUT",
     redirect: "follow",

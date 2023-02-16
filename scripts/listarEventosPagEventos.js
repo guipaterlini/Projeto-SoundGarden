@@ -28,18 +28,14 @@ const mostrarEventosPagEventos = function (data) {
 };
 
 // Fetch para pegar dados da API
-const listarEventosPagEventos = function (event) {
-  fetch(endpoint, {
-    method: "GET",
-    redirect: "follow",
+fetch(endpoint, {
+  method: "GET",
+  redirect: "follow",
+})
+  .then((response) => response.json())
+  .then((data) => {
+    mostrarEventosPagEventos(data);
   })
-    .then((response) => response.json())
-    .then((data) => {
-      mostrarEventosPagEventos(data);
-    })
-    .catch((error) => {
-      console.error("Erro ao processar a resposta do servidor: ", error);
-    });
-};
-
-listarEventosPagEventos();
+  .catch((error) => {
+    console.error("Erro ao processar a resposta do servidor: ", error);
+  });
