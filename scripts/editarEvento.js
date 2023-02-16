@@ -1,22 +1,21 @@
 import { endpoint } from "./utils/apiEndpoint.js";
 import { lerFormulario } from "./utils/lerFormulario.js";
 import { preencherFormulario } from "./utils/preencherFormulario.js";
+import { lerIdUrl } from "./utils/lerIdUrl.js";
 
-const url = new URL(window.location.href);
-const searchParams = new URLSearchParams(url.search);
-const id = searchParams.get("id");
+const id = lerIdUrl();
 
 // Busca na api pelos dados do event a ser excluido
-  fetch(endpoint + id, {
-    method: "GET",
-    redirect: "follow",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => preencherFormulario(data))
-    .catch((error) => console.log("error", error));
+fetch(endpoint + id, {
+  method: "GET",
+  redirect: "follow",
+  headers: {
+    "Content-Type": "application/json",
+  },
+})
+  .then((response) => response.json())
+  .then((data) => preencherFormulario(data))
+  .catch((error) => console.log("error", error));
 
 var formEditarEvento = document.querySelector("#form-editar-evento");
 const eventoEditado = {};
