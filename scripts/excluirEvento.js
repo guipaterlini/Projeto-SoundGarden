@@ -1,49 +1,28 @@
-import { formataDataToLocal } from "./utils/formataDataToLocal.js";
+import { endpoint } from "./utils/apiEndpoint.js";
+import { preencherFormulario } from "./utils/preencherFormulario.js";
+import { lerIdUrl } from "./utils/lerIdUrl.js";
 
-const apiUrl = "https://soundgarden-api.vercel.app/events/";
-
-// Identifica o ID que está na URL da pagina
-const url = new URL(window.location.href);
-const searchParams = new URLSearchParams(url.search);
-const id = searchParams.get("id");
-
-// Preenche o formulario com os dados que vem da api
-const preencherFormExcluirEvento = function (data) {
-  // Para deixar o codigo mais curto eu usei 'desestruturação de objetos'
-  const { name, poster, attractions, description, scheduled, number_tickets } =
-    data;
-  document.querySelector("#nome").value = name;
-  document.querySelector("#banner").value = poster;
-  document.querySelector("#atracoes").value = attractions.join(",  ");
-  document.querySelector("#descricao").value = description;
-  document.querySelector("#data").value = formataDataToLocal(scheduled);
-  document.querySelector("#lotacao").value = number_tickets;
-};
+const id = lerIdUrl();
 
 // Busca na api pelos dados do event a ser excluido
-
-const getByIdExcluirDados = function (event) {
-  fetch(apiUrl + id, {
-    method: "GET",
-    redirect: "follow",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => preencherFormExcluirEvento(data))
-    .catch((error) => console.log("error", error));
-};
-
-getByIdExcluirDados();
+fetch(endpoint + id, {
+  method: "GET",
+  redirect: "follow",
+  headers: {
+    "Content-Type": "application/json",
+  },
+})
+  .then((response) => response.json())
+  .then((data) => preencherFormulario(data))
+  .catch((error) => console.log("error", error));
 
 // no click excluir o evento
 const btnExcluirEvento = document.querySelector("#btn-excluir-para-sempre");
 btnExcluirEvento.addEventListener("click", function (event) {
-  const nomeEvento = document.querySelector("#nome").value
+  const nomeEvento = document.querySelector("#nome").value;
   event.preventDefault();
 
-  fetch(apiUrl + id, {
+  fetch(endpoint + id, {
     method: "DELETE",
     redirect: "follow",
     headers: {

@@ -38,7 +38,7 @@
           <hr />
           <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
-              <a href="#" class="nav-link active" aria-current="page">
+              <a href="./admin.html" class="nav-link active" aria-current="page">
                 Eventos
               </a>
             </li>
@@ -61,12 +61,13 @@
           </div>
           <div>
             <!-- - cadastro de evento (nome, atrações, descrição, horário, data, numero de ingressos) -->
-            <form class="col-6">
+            <form class="col-6" id="form-editar-evento">
               <div class="mb-3">
                 <label for="nome" class="form-label">Nome</label>
                 <input
                   type="text"
                   class="form-control"
+                  name="name"
                   id="nome"
                   aria-describedby="nome"
                 />
@@ -76,6 +77,7 @@
                 <input
                   type="text"
                   class="form-control"
+                  name="poster"
                   id="banner"
                   aria-describedby="banner"
                 />
@@ -87,6 +89,7 @@
                   type="text"
                   class="form-control"
                   id="atracoes"
+                  name="attractions"
                   aria-describedby="atracoes"
                 />
                 <small>insira o nome dos artistas separados por vírgula</small>
@@ -94,7 +97,7 @@
               <div class="mb-3">
                 <label for="descricao" class="form-label">Descrição</label>
                 <textarea
-                  name="descricao"
+                  name="description"
                   id="descricao"
                   class="form-control"
                   rows="5"
@@ -104,7 +107,7 @@
                 <label for="data" class="form-label">Data</label>
                 <input
                   type="datetime"
-                  name="data"
+                  name="scheduled"
                   id="data"
                   class="form-control"
                   placeholder="00/00/00 00:00"
@@ -118,10 +121,11 @@
                   type="number"
                   class="form-control"
                   id="lotacao"
+                  name="number_tickets"
                   aria-describedby="lotacao"
                 />
               </div>
-              <button type="submit" class="btn btn-primary">enviar</button>
+              <button type="submit" id="btn-enviar-editar"class="btn btn-primary">enviar</button>
             </form>
           </div>
         </main>
@@ -132,5 +136,6 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+    <script type="module" src="./scripts/editarEvento.js"></script>
   </body>
 </html>

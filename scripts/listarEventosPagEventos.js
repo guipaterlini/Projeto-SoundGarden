@@ -1,3 +1,4 @@
+import { endpoint } from "./utils/apiEndpoint.js";
 import { formataDataToLocal } from "./utils/formataDataToLocal.js";
 
 // função para mostrar todos os eventos na pagina de eventos.html
@@ -27,20 +28,14 @@ const mostrarEventosPagEventos = function (data) {
 };
 
 // Fetch para pegar dados da API
-const apiUrl = "https://soundgarden-api.vercel.app/events";
-
-const listarEventosPagEventos = function (event) {
-  fetch(apiUrl, {
-    method: "GET",
-    redirect: "follow",
+fetch(endpoint, {
+  method: "GET",
+  redirect: "follow",
+})
+  .then((response) => response.json())
+  .then((data) => {
+    mostrarEventosPagEventos(data);
   })
-    .then((response) => response.json())
-    .then((data) => {
-      mostrarEventosPagEventos(data);
-    })
-    .catch((error) => {
-      console.error("Erro ao processar a resposta do servidor: ", error);
-    });
-};
-
-listarEventosPagEventos();
+  .catch((error) => {
+    console.error("Erro ao processar a resposta do servidor: ", error);
+  });

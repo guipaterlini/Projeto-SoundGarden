@@ -1,137 +1,46 @@
-const  endpoint = 'https://soundgarden-api.deta.dev/events/:id';
+import { endpoint } from "./utils/apiEndpoint.js";
+import { lerFormulario } from "./utils/lerFormulario.js";
+import { preencherFormulario } from "./utils/preencherFormulario.js";
+import { lerIdUrl } from "./utils/lerIdUrl.js";
 
-// Buscar a API de eventos por ID
-
-function editarEvento() {
-    let params = {
-        method: 'GET',
-        redirect: 'follow'
-    };
-
-    fetch(endpoint, params)
-        .then(response => {
-            return response.json();
-        })
-        .then(data => {
-            let btnEditar = document.getElementsByClassName('btn btn-secondary');
-            btnEditar.textContext = data.id;
-            // btnEditar.addEventListener('click', () => {
-                //console.log(windon.location.pathname)
-                // windon.location.href = 'editar-evento.html'
-    
-            // })
-        })
-        .catch(error => {
-            console.log('error', error);
-        })
-
-}
-
-editarEvento();
-
-// Buscar a API de atualizar (put)
-
-function atualizarEvento() {
-    let paramsAtualizar = {
-        method: 'PUT',
-        body: raw,
-        redirect: 'follow'
-    };
-
-    fetch(endpoint, paramsAtualizar)
-        .then(response => response.text())
-        .then(data => console.log(data))
-        .catch(error => console.log('error', error));
-}
-atualizarEvento();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const apiUrl = "https://soundgarden-api.deta.dev/events/:id";
-
-// Identifica o ID que está na URL da pagina
-const url = new URL(window.location.href);
-const searchId = new URLSearchParams(url.search).get("id");
-
-
-// Preenche o formulario com os dados que vem da api
-const preencherFormEditarEvento = function (data) {
-  // Para deixar o codigo mais curto eu usei 'desestruturação de objetos'
-  const { name, banner, attractions, description, tickets } =
-    data;
-  document.querySelector("#nome").value = name;
-  document.querySelector("#banner").value = banner;
-  document.querySelector("#atracoes").value = attractions.join(",  ");
-  document.querySelector("#descricao").value = description;
-  document.querySelector("#lotacao").value = tickets;
-};
+//função que pega o ID que veio pela URL
+const id = lerIdUrl();
 
 // Busca na api pelos dados do event a ser excluido
+fetch(endpoint + id, {
+  method: "GET",
+  redirect: "follow",
+  headers: {
+    "Content-Type": "application/json",
+  },
+})
+  .then((response) => response.json())
+  // função que prenche o formulario com os dados que vieram pela api
+  .then((data) => preencherFormulario(data))
+  .catch((error) => console.log("error", error));
 
-const editarEvento = function (event) {
-  fetch(apiUrl, {
-    method: "GET",
-    redirect: "follow",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => preencherFormEditarEvento(data))
-    .catch((error) => console.log("error", error));
-};
+var formEditarEvento = document.querySelector("#form-editar-evento");
+const eventoEditado = {};
 
-editarEvento();
-
-// no click excluir o evento
-const btnEditarEvento = document.querySelector("#btn-secondary");
-btnEditarEvento.addEventListener("click", function (event) {
-  const nomeEvento = document.querySelector("#nome").value
+formEditarEvento.addEventListener("submit", function (event) {
   event.preventDefault();
 
-  fetch(apiUrl, {
-    method: "GET",
+  const inputs = formEditarEvento.elements;
+  // função que le todos os inputs do formulario e salva em objeto
+  lerFormulario(inputs, eventoEditado);
+  // função que envia os dados salvos no objeto para para atualizarem o banco de dados
+  fetch(endpoint + id, {
+    method: "PUT",
     redirect: "follow",
     headers: {
       "Content-Type": "application/json",
     },
+    body: JSON.stringify(eventoEditado),
   })
     .then((response) => response.text())
-    .then(result => console.log(result))
     .then(() => {
-      // usado o replace para que o usuario nao possa voltar a pagina do excluir-evento.html, ja que o evento foi deletado
-      window.location.replace("./editar-evento.html");
-      alert("Salvo" + nomeEvento);
+      window.location.replace("./admin.html");
+      alert("Evento editado com sucesso!");
     })
     .catch((error) => console.log("error", error));
 });
-
-
