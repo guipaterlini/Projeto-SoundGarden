@@ -1,4 +1,4 @@
-const apiUrl = "https://soundgarden-api.deta.dev/events";
+const apiUrl = "https://soundgarden-api.vercel.app/events";
 
 export const enviarEventoPost = function (event) {
   fetch(apiUrl, {

@@ -1,6 +1,6 @@
 import { formataDataToLocal } from "./utils/formataDataToLocal.js";
 
-const apiUrl = "https://soundgarden-api.deta.dev/events/";
+const apiUrl = "https://soundgarden-api.vercel.app/events/";
 
 // Identifica o ID que está na URL da pagina
 const url = new URL(window.location.href);

@@ -35,7 +35,7 @@ const mostrarEventosAdmin = function (data) {
 };
 
 // Fetch para pegar dados da API
-const apiUrl = "https://soundgarden-api.deta.dev/events";
+const apiUrl = "https://soundgarden-api.vercel.app/events";
 
 const listarEventosAdmin = function (event) {
   fetch(apiUrl, {
