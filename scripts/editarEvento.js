@@ -1,28 +1,12 @@
-import { formataDataToLocal } from "./utils/formataDataToLocal.js";
-import { formataDataISO8601 } from "./utils/formataDataISO8601.js";
+import { endpoint } from "./utils/apiEndpoint.js";
 import { lerFormulario } from "./utils/lerFormulario.js";
-
-const endpoint = "https://soundgarden-api.vercel.app/events/";
+import { preencherFormulario } from "./utils/preencherFormulario.js";
 
 const url = new URL(window.location.href);
 const searchParams = new URLSearchParams(url.search);
 const id = searchParams.get("id");
 
-// Preenche o formulario com os dados que vem da api
-const preencherFormEditarEvento = function (data) {
-  const { name, poster, attractions, description, scheduled, number_tickets } =
-    data;
-  document.querySelector("#nome").value = name;
-  document.querySelector("#banner").value = poster;
-  document.querySelector("#atracoes").value = attractions.join(",  ");
-  document.querySelector("#descricao").value = description;
-  document.querySelector("#data").value = formataDataToLocal(scheduled);
-  document.querySelector("#lotacao").value = number_tickets;
-};
-
 // Busca na api pelos dados do event a ser excluido
-
-const editarDados = function (e) {
   fetch(endpoint + id, {
     method: "GET",
     redirect: "follow",
@@ -31,14 +15,10 @@ const editarDados = function (e) {
     },
   })
     .then((response) => response.json())
-    .then((data) => preencherFormEditarEvento(data))
+    .then((data) => preencherFormulario(data))
     .catch((error) => console.log("error", error));
-};
-
-editarDados();
 
 var formEditarEvento = document.querySelector("#form-editar-evento");
-
 const eventoEditado = {};
 
 formEditarEvento.addEventListener("submit", function (event) {

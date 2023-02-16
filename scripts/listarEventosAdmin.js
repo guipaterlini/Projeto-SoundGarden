@@ -1,3 +1,4 @@
+import { endpoint } from "./utils/apiEndpoint.js";
 import { formataDataToLocal } from "./utils/formataDataToLocal.js";
 
 // função para mostrar todos os eventos na pagina de admin
@@ -35,10 +36,8 @@ const mostrarEventosAdmin = function (data) {
 };
 
 // Fetch para pegar dados da API
-const apiUrl = "https://soundgarden-api.vercel.app/events";
-
 const listarEventosAdmin = function (event) {
-  fetch(apiUrl, {
+  fetch(endpoint, {
     method: "GET",
     redirect: "follow",
   })
