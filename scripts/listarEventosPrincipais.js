@@ -5,7 +5,7 @@ import { formataDataToLocal } from "./utils/formataDataToLocal.js";
 const mostrarEventosPrincipais = function (data) {
   const divEventosPrincipais = document.querySelector("#lista-eventos-principais");
 
-  for (let i = 0; i < 2; i++) {
+  for (let i = 0; i < 3; i++) {
     const evento = data[i];
 
     const eventosPrincipais = document.createElement("article");
