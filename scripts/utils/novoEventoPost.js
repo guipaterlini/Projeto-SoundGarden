@@ -9,8 +9,8 @@ export const enviarEventoPost = function (event) {
     body: JSON.stringify(event),
   })
     .then((response) => response.json())
-    .then((data) => {
-      console.log("Resposta do servidor:", data);
+    .then(() => {
+      window.location.replace("./admin.html");
       alert("Evento criado com sucesso!");
     })
     .catch((error) => {
