@@ -23,7 +23,7 @@ const mostrarEventosAdmin = function (data) {
       ) /*.join é para colocar um espaço depois de virgula, deixando as atraçoes mais legiveis*/
     }</td>
     <td>
-    <a class="btn btn-dark" id="open-modal-admin"
+    <a class="btn btn-dark" id="open-modal-admin" name="${evento._id}"
     >ver reservas</a>
     <a href="editar-evento.html?id=${
       evento._id
