@@ -1,3 +1,4 @@
+import { endpoint } from "./utils/apiEndpoint.js";
 import { formataDataToLocal } from "./utils/formataDataToLocal.js";
 
 // função para mostrar todos os eventos na pagina de admin
@@ -12,7 +13,8 @@ const mostrarEventosAdmin = function (data) {
     <th scope="row">${i + 1}</th>
     <td>${
       //Transformando o formato da data que vem da API para DD/MM/YYYY HH:MM
-      formataDataToLocal(evento.scheduled)}</td>
+      formataDataToLocal(evento.scheduled)
+    }</td>
     <td>${evento.name}</td>
     <td>${
       evento.attractions.join(
@@ -35,20 +37,14 @@ const mostrarEventosAdmin = function (data) {
 };
 
 // Fetch para pegar dados da API
-const apiUrl = "https://soundgarden-api.deta.dev/events";
-
-const listarEventosAdmin = function (event) {
-  fetch(apiUrl, {
-    method: "GET",
-    redirect: "follow",
+fetch(endpoint, {
+  method: "GET",
+  redirect: "follow",
+})
+  .then((response) => response.json())
+  .then((data) => {
+    mostrarEventosAdmin(data);
   })
-    .then((response) => response.json())
-    .then((data) => {
-      mostrarEventosAdmin(data);
-    })
-    .catch((error) => {
-      console.error("Erro ao processar a resposta do servidor: ", error);
-    });
-};
-
-listarEventosAdmin();
+  .catch((error) => {
+    console.error("Erro ao processar a resposta do servidor: ", error);
+  });

@@ -2,15 +2,15 @@ import { endpoint } from "./utils/apiEndpoint.js";
 import { formataDataToLocal } from "./utils/formataDataToLocal.js";
 
 // função para mostrar todos os eventos na pagina de eventos.html
-const mostrarEventosPagEventos = function (data) {
-  const divTodosEventosLP = document.querySelector("#divTodosEventos");
+const mostrarEventosPrincipais = function (data) {
+  const divEventosPrincipais = document.querySelector("#lista-eventos-principais");
 
-  for (let i = 0; i < data.length; i++) {
+  for (let i = 0; i < 3; i++) {
     const evento = data[i];
 
-    const eventosPaginaEventos = document.createElement("article");
-    eventosPaginaEventos.className = "evento card p-5 m-3";
-    eventosPaginaEventos.innerHTML = `
+    const eventosPrincipais = document.createElement("article");
+    eventosPrincipais.className = "evento card p-5 m-3";
+    eventosPrincipais.innerHTML = `
     <h2>${evento.name} - ${
       //Transformando o formato da data que vem da API para DD/MM/YYYY HH:MM
       formataDataToLocal(evento.scheduled)
@@ -21,9 +21,9 @@ const mostrarEventosPagEventos = function (data) {
       ) /*.join é para colocar um espaço depois de virgula, deixando as atraçoes mais legiveis*/
     }</h4>
     <p>${evento.description}</p>
-    <a href="#" type="button" data-toggle="modal" data-target="#addUsuarioModal" class="btn btn-primary" id="btn-modal">reservar ingresso</a>
+    <a href="#" class="btn btn-primary">reservar ingresso</a>
     `;
-    divTodosEventosLP.appendChild(eventosPaginaEventos);
+    divEventosPrincipais.appendChild(eventosPrincipais);
   }
 };
 
@@ -34,7 +34,7 @@ fetch(endpoint, {
 })
   .then((response) => response.json())
   .then((data) => {
-    mostrarEventosPagEventos(data);
+    mostrarEventosPrincipais(data);
   })
   .catch((error) => {
     console.error("Erro ao processar a resposta do servidor: ", error);
