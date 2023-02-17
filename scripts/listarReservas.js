@@ -1,11 +1,14 @@
-import { endpointReservaEventoById } from "./utils/apiEndpoint.js";
+import {
+  endpointReservaEventoById,
+  endpointReserva,
+} from "./utils/apiEndpoint.js";
 
 export const exibirModalAdmin = function () {
   const openModalButtonAdmin = document.querySelectorAll("#open-modal-admin");
   const closeModalButtonAdmin = document.querySelector("#close-modal-admin");
   const modalAdmin = document.querySelector("#modal-admin");
   const fadeAdmin = document.querySelector("#fade-admin");
-  let id;
+  let idEvento;
 
   const toggleModalAdmin = () => {
     [modalAdmin, fadeAdmin].forEach((el) => el.classList.toggle("hide-admin"));
@@ -31,17 +34,18 @@ export const exibirModalAdmin = function () {
           <td>${reserva.owner_email}</td>
           <td>${reserva.number_tickets}</td>
           <td>
-          <a href="excluir-evento.html?id=${
+          <a class="btn btn-danger" id="btn-excluir-reserva" name="${
             reserva._id
-          }" class="btn btn-danger">excluir</a>
+          }" >excluir</a>
         </td>
         `;
       tbodyReservas.appendChild(reservasEventos);
     }
+    excluirReservaById();
   };
 
-  const buscarReservas = function (id) {
-    fetch(endpointReservaEventoById + id, {
+  const buscarReservas = function (idEvento) {
+    fetch(endpointReservaEventoById + idEvento, {
       method: "GET",
       redirect: "follow",
     })
@@ -55,10 +59,39 @@ export const exibirModalAdmin = function () {
   };
 
   openModalButtonAdmin.forEach((button) => {
-    button.addEventListener("click", (event) => {
-      id = event.target.getAttribute("name"); // atribuição do valor do id
+    button.addEventListener("click", (e) => {
+      idEvento = e.target.getAttribute("name"); // atribuição do valor do id
       toggleModalAdmin();
-      buscarReservas(id);
+      buscarReservas(idEvento);
     });
   });
+};
+
+// Excluir Reserva
+
+const excluirReservaById = function () {
+  const btnExcluirReserva = document.querySelectorAll("#btn-excluir-reserva");
+  btnExcluirReserva.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      let idReserva = event.target.getAttribute("name");
+      console.log(idReserva); // atribuição do valor do id
+      excluirReserva(idReserva);
+    });
+  });
+
+  const excluirReserva = function (idReserva) {
+    fetch(endpointReserva + idReserva, {
+      method: "DELETE",
+      redirect: "follow",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.text())
+      .then(() => {
+        alert("Reserva deletada com sucesso!");
+        window.location.reload();
+      })
+      .catch((error) => console.log("error", error));
+  };
 };
