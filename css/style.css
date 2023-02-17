@@ -73,3 +73,8 @@ footer nav ul li {
   padding: 1.2rem;
   border-radius: 0.5rem;
 }
+
+#fade-admin.hide-admin,
+#modaladmin.hide-admin {
+  opacity: 0;
+}
