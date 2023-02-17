@@ -50,6 +50,13 @@ footer nav ul li {
   padding: 10px;
 }
 
+#fade-admin,
+#modal-admin {
+  transition: 0.5s;
+  opacity: 1;
+  pointer-events: all;
+}
+
 #fade-admin {
   position: fixed;
   top: 0;
@@ -60,7 +67,7 @@ footer nav ul li {
   z-index: 5;
 }
 
-#modaladmin {
+#modal-admin {
   position: fixed;
   left: 50%;
   top: 50%;
@@ -75,6 +82,7 @@ footer nav ul li {
 }
 
 #fade-admin.hide-admin,
-#modaladmin.hide-admin {
+#modal-admin.hide-admin {
   opacity: 0;
+  pointer-events: none;
 }

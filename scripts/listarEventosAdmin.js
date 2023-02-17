@@ -1,5 +1,6 @@
 import { endpoint } from "./utils/apiEndpoint.js";
 import { formataDataToLocal } from "./utils/formataDataToLocal.js";
+import { exibirModalAdmin } from "./listarReservas.js";
 
 // função para mostrar todos os eventos na pagina de admin
 const mostrarEventosAdmin = function (data) {
@@ -22,7 +23,7 @@ const mostrarEventosAdmin = function (data) {
       ) /*.join é para colocar um espaço depois de virgula, deixando as atraçoes mais legiveis*/
     }</td>
     <td>
-    <a href="reservas.html" class="btn btn-dark"
+    <a class="btn btn-dark" id="open-modal-admin"
     >ver reservas</a>
     <a href="editar-evento.html?id=${
       evento._id
@@ -34,6 +35,7 @@ const mostrarEventosAdmin = function (data) {
     `;
     tbodyEventosAdmin.appendChild(eventosListadosAdmin);
   }
+  exibirModalAdmin();
 };
 
 // Fetch para pegar dados da API
@@ -48,3 +50,5 @@ fetch(endpoint, {
   .catch((error) => {
     console.error("Erro ao processar a resposta do servidor: ", error);
   });
+
+  
