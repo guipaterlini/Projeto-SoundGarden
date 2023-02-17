@@ -86,3 +86,7 @@ footer nav ul li {
   opacity: 0;
   pointer-events: none;
 }
+
+#modal-admin.hide-admin {
+  top: 0
+}
