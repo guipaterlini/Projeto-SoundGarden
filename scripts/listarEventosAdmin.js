@@ -50,5 +50,3 @@ fetch(endpoint, {
   .catch((error) => {
     console.error("Erro ao processar a resposta do servidor: ", error);
   });
-
-  
