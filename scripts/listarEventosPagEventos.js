@@ -21,7 +21,7 @@ const mostrarEventosPagEventos = function (data) {
       ) /*.join é para colocar um espaço depois de virgula, deixando as atraçoes mais legiveis*/
     }</h4>
     <p>${evento.description}</p>
-    <a href="#" type="button" data-toggle="modal" data-target="#addUsuarioModal" class="btn btn-primary" id="btn-modal">reservar ingresso</a>
+    <a type="button" data-toggle="modal" data-target="#addUsuarioModal" class="btn btn-primary" id="open-modal-eventos">reservar ingresso</a>
     `;
     divTodosEventosLP.appendChild(eventosPaginaEventos);
   }
