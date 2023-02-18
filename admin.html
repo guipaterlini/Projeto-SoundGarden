@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sound Gardens - Painel Administrativo</title>
-
+    <link rel="shortcut icon" href="./img/favicon.png" type="image/x-icon" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -13,6 +13,18 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="css/style.css" />
+    <script>
+      // Desabilita o cache para todas as requisições
+      window.addEventListener("load", function () {
+        fetch("/", {
+          headers: {
+            "Cache-Control": "no-cache, no-store, must-revalidate",
+            Pragma: "no-cache",
+            Expires: "0",
+          },
+        });
+      });
+    </script>
   </head>
 
   <body>
@@ -38,7 +50,11 @@
           <hr />
           <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
-              <a href="./admin.html" class="nav-link active" aria-current="page">
+              <a
+                href="./admin.html"
+                class="nav-link active"
+                aria-current="page"
+              >
                 Eventos
               </a>
             </li>
@@ -79,6 +95,27 @@
           </div>
         </main>
       </div>
+      <div id="fade-admin" class="hide-admin"></div>
+      <div id="modal-admin" class="hide-admin">
+        <div class="modal-header">
+          <h2 class="container text-center">Reservas</h2>
+          <button class="btn btn-secondary" id="close-modal-admin">
+            Fechar
+          </button>
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Email</th>
+              <th scope="col">Número de Ingressos</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-reservas"></tbody>
+        </table>
+      </div>
     </div>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -86,5 +123,6 @@
       crossorigin="anonymous"
     ></script>
     <script type="module" src="./scripts/listarEventosAdmin.js"></script>
+    <!-- <script type="module" src="./scripts/listarReservas.js" defer></script> -->
   </body>
 </html>
