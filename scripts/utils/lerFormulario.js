@@ -1,6 +1,7 @@
 import { formataDataISO8601 } from "./formataDataISO8601.js";
+import { validacaoEmail } from "./validacaoEmail.js";
 
-export const lerFormulario = function (inputs, objectEvent) {
+export const lerFormulario = function (inputs, objectEvent, idEvento) {
   for (let i = 0; i < inputs.length; i++) {
     if (inputs[i].type !== "submit") {
       // validando se o campo está vazio
@@ -35,11 +36,20 @@ export const lerFormulario = function (inputs, objectEvent) {
           }
           objectEvent[inputs[i].name] = formataDataISO8601(objectEventDate);
           break;
+        case "owner_email":
+          let email = inputs[i].value
+          objectEvent[inputs[i].name] = validacaoEmail(email);
+          break;
         default:
           // caso seja de outro tipo, só acrescenta sem nenhum tratamento
           objectEvent[inputs[i].name] = inputs[i].value;
       }
     }
   }
+  if (idEvento != undefined) {
+    objectEvent.event_id = idEvento;
+  }
+  console.log(objectEvent);
+
   return objectEvent;
 };

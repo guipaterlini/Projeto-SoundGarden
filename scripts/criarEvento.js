@@ -10,7 +10,7 @@ formNewEvent.addEventListener("submit", function (event) {
 
   const inputs = formNewEvent.elements;
   // função que le os dados do formulario
-  lerFormulario(inputs, objectEvent);
+  lerFormulario(inputs, objectEvent, undefined);
 
   // função que envia os dados pela api
   fetch(endpoint, {

@@ -26,6 +26,48 @@
         <div class="container text-center">
           <h2>Todos os Eventos</h2>
         </div>
+        <div id="fade-eventos" class="hide-eventos"></div>
+        <div id="modal-eventos" class="hide-eventos">
+          <div class="modal-header">
+            <h2 class="container text-center">Faça sua reserva</h2>
+            <button class="btn btn-secondary" id="close-modal-eventos">
+              Fechar
+            </button>
+          </div>
+          <form class="col-6" id="form-reservar">
+            <div class="mb-3">
+              <label for="nome" class="form-label">Nome</label>
+              <input
+                type="text"
+                class="form-control"
+                name="owner_name"
+                aria-describedby="nome"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input
+                type="text"
+                class="form-control"
+                name="owner_email"
+                aria-describedby="email"
+              />
+              <small id="msgemail"></small>
+            </div>
+            <div class="mb-3">
+              <label for="ingressos" class="form-label"
+                >Quantidade de ingressos</label
+              >
+              <input
+                type="number"
+                class="form-control"
+                name="number_tickets"
+                aria-describedby="Quantidade de ingressos"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">reservar</button>
+          </form>
+        </div>
         <div
           id="divTodosEventos"
           class="container d-flex justify-content-center align-items-center flex-wrap"
@@ -91,5 +133,6 @@
       </div>
     </footer>
     <script type="module" src="./scripts/listarEventosPagEventos.js"></script>
+    <script type="module" src="./scripts/modalEventos.js" defer></script>
   </body>
 </html>
