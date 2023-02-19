@@ -1,13 +1,15 @@
 import { endpoint } from "./utils/apiEndpoint.js";
 import { formataDataToLocal } from "./utils/formataDataToLocal.js";
 import { mostrarModalEventos } from "./modalEventos.js";
+import { removerEventosAnteriores } from "./utils/removerEventosAnteriores.js";
 
 // função para mostrar todos os eventos na pagina de eventos.html
 const mostrarEventosPrincipais = function (data) {
+  let dataFormatada = removerEventosAnteriores(data)
   const divEventosPrincipais = document.querySelector("#lista-eventos-principais");
 
   for (let i = 0; i < 3; i++) {
-    const evento = data[i];
+    const evento = dataFormatada[i];
 
     const eventosPrincipais = document.createElement("article");
     eventosPrincipais.className = "evento card p-5 m-3";
