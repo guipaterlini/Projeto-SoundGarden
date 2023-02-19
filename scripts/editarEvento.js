@@ -27,7 +27,7 @@ formEditarEvento.addEventListener("submit", function (event) {
 
   const inputs = formEditarEvento.elements;
   // função que le todos os inputs do formulario e salva em objeto
-  lerFormulario(inputs, eventoEditado);
+  lerFormulario(inputs, eventoEditado, undefined);
   // função que envia os dados salvos no objeto para para atualizarem o banco de dados
   fetch(endpoint + id, {
     method: "PUT",

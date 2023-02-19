@@ -1,4 +1,7 @@
+import { criarReserva } from "./criarReserva.js";
+
 export const mostrarModalEventos = function () {
+  let idEvento;
   const openModalButtonEventos = document.querySelectorAll(
     "#open-modal-eventos"
   );
@@ -20,10 +23,11 @@ export const mostrarModalEventos = function () {
     });
   });
   openModalButtonEventos.forEach((element) => {
-    element.addEventListener("click", function () {
+    element.addEventListener("click", function (e) {
+      idEvento = e.target.getAttribute("name");
       toggleModalEventos();
+      criarReserva(idEvento);
     });
   });
 
-//   criarReserva();
 };
