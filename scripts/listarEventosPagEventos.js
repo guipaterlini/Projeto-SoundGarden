@@ -1,5 +1,6 @@
 import { endpoint } from "./utils/apiEndpoint.js";
 import { formataDataToLocal } from "./utils/formataDataToLocal.js";
+import { mostrarModalEventos } from "./modalEventos.js";
 
 // função para mostrar todos os eventos na pagina de eventos.html
 const mostrarEventosPagEventos = function (data) {
@@ -25,6 +26,7 @@ const mostrarEventosPagEventos = function (data) {
     `;
     divTodosEventosLP.appendChild(eventosPaginaEventos);
   }
+  mostrarModalEventos();
 };
 
 // Fetch para pegar dados da API
