@@ -86,8 +86,9 @@ footer nav ul li {
 }
 
 #modal-eventos {
-  height: 70vh;
+  height: 75vh;
   width: 50vw;
+  overflow: none;
 }
 
 #form-reservar {

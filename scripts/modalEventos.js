@@ -29,5 +29,4 @@ export const mostrarModalEventos = function () {
       criarReserva(idEvento);
     });
   });
-
 };
