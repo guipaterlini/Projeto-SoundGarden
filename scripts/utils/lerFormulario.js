@@ -37,7 +37,8 @@ export const lerFormulario = function (inputs, objectEvent, idEvento) {
           objectEvent[inputs[i].name] = formataDataISO8601(objectEventDate);
           break;
         case "owner_email":
-          objectEvent[inputs[i].name] = validacaoEmail(inputs[i].value);
+          let email = inputs[i].value
+          objectEvent[inputs[i].name] = validacaoEmail(email);
           break;
         default:
           // caso seja de outro tipo, só acrescenta sem nenhum tratamento
