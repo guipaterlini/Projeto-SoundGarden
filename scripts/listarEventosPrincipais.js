@@ -2,11 +2,16 @@ import { endpoint } from "./utils/apiEndpoint.js";
 import { formataDataToLocal } from "./utils/formataDataToLocal.js";
 import { mostrarModalEventos } from "./modalEventos.js";
 import { removerEventosAnteriores } from "./utils/removerEventosAnteriores.js";
+import { fitrarEventosPagPrincipal } from "./utils/filtrarProximosEventos.js";
 
 // função para mostrar todos os eventos na pagina de eventos.html
 const mostrarEventosPrincipais = function (data) {
-  let dataFormatada = removerEventosAnteriores(data)
-  const divEventosPrincipais = document.querySelector("#lista-eventos-principais");
+  let dataFormatada = removerEventosAnteriores(data);
+  // let dataFiltrada = fitrarEventosPagPrincipal(dataFormatada);
+
+  const divEventosPrincipais = document.querySelector(
+    "#lista-eventos-principais"
+  );
 
   for (let i = 0; i < 3; i++) {
     const evento = dataFormatada[i];
@@ -24,7 +29,9 @@ const mostrarEventosPrincipais = function (data) {
       ) /*.join é para colocar um espaço depois de virgula, deixando as atraçoes mais legiveis*/
     }</h4>
     <p>${evento.description}</p>
-    <a type="button" data-target="#addUsuarioModal" class="btn btn-primary" id="open-modal-eventos" name="${evento._id}">reservar ingresso</a>
+    <a type="button" data-target="#addUsuarioModal" class="btn btn-primary" id="open-modal-eventos" name="${
+      evento._id
+    }">reservar ingresso</a>
     `;
     divEventosPrincipais.appendChild(eventosPrincipais);
   }
