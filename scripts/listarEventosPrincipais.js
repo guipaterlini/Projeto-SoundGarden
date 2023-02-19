@@ -1,5 +1,6 @@
 import { endpoint } from "./utils/apiEndpoint.js";
 import { formataDataToLocal } from "./utils/formataDataToLocal.js";
+import { mostrarModalEventos } from "./modalEventos.js";
 
 // função para mostrar todos os eventos na pagina de eventos.html
 const mostrarEventosPrincipais = function (data) {
@@ -21,10 +22,11 @@ const mostrarEventosPrincipais = function (data) {
       ) /*.join é para colocar um espaço depois de virgula, deixando as atraçoes mais legiveis*/
     }</h4>
     <p>${evento.description}</p>
-    <a href="#" class="btn btn-primary">reservar ingresso</a>
+    <a type="button" data-target="#addUsuarioModal" class="btn btn-primary" id="open-modal-eventos" name="${evento._id}">reservar ingresso</a>
     `;
     divEventosPrincipais.appendChild(eventosPrincipais);
   }
+  mostrarModalEventos();
 };
 
 // Fetch para pegar dados da API
