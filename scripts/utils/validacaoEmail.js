@@ -14,12 +14,11 @@ export const validacaoEmail = function (email) {
     dominio.indexOf(".") >= 1 &&
     dominio.lastIndexOf(".") < dominio.length - 1
   ) {
-    document.getElementById("msgemail").innerHTML = "E-mail válido";
+    return email;
   } else {
     document.getElementById("msgemail").innerHTML =
       "<font color='red'>E-mail inválido </font>";
     alert("E-mail invalido");
     throw new Error("E-mail invalido");
   }
-  return email;
 };

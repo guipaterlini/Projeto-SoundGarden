@@ -1,5 +1,6 @@
 import { formataDataISO8601 } from "./formataDataISO8601.js";
 import { validacaoEmail } from "./validacaoEmail.js";
+import { validacaoDataEvento } from "./validacaoDataEvento.js";
 
 export const lerFormulario = function (inputs, objectEvent, idEvento) {
   for (let i = 0; i < inputs.length; i++) {
@@ -33,11 +34,12 @@ export const lerFormulario = function (inputs, objectEvent, idEvento) {
             throw new Error(
               "Data inválida. Por favor, insira uma data e horário no formato 00/00/0000 00:00."
             );
+          } else if (!validacaoDataEvento(objectEventDate)) {
           }
           objectEvent[inputs[i].name] = formataDataISO8601(objectEventDate);
           break;
         case "owner_email":
-          let email = inputs[i].value
+          let email = inputs[i].value;
           objectEvent[inputs[i].name] = validacaoEmail(email);
           break;
         default:
