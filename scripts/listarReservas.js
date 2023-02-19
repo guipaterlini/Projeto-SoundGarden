@@ -92,6 +92,8 @@ const excluirReservaById = function () {
         alert("Reserva deletada com sucesso!");
         window.location.reload();
       })
-      .catch((error) => console.log("error", error));
+      .catch((error) => {
+        console.error("Erro ao processar a resposta do servidor: ", error);
+      });
   };
 };

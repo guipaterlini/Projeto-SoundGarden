@@ -51,7 +51,6 @@ export const lerFormulario = function (inputs, objectEvent, idEvento) {
   if (idEvento != undefined) {
     objectEvent.event_id = idEvento;
   }
-  console.log(objectEvent);
 
   return objectEvent;
 };

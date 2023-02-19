@@ -42,5 +42,7 @@ formEditarEvento.addEventListener("submit", function (event) {
       window.location.replace("./admin.html");
       alert("Evento editado com sucesso!");
     })
-    .catch((error) => console.log("error", error));
+    .catch((error) => {
+      console.error("Erro ao processar a resposta do servidor: ", error);
+    });
 });
