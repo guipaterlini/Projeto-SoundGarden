@@ -51,13 +51,16 @@ footer nav ul li {
 }
 
 #fade-admin,
-#modal-admin {
+#modal-admin,
+#fade-eventos,
+#modal-eventos {
   transition: 0.5s;
   opacity: 1;
   pointer-events: all;
 }
 
-#fade-admin {
+#fade-admin,
+#fade-eventos {
   position: fixed;
   top: 0;
   left: 0;
@@ -67,7 +70,8 @@ footer nav ul li {
   z-index: 5;
 }
 
-#modal-admin {
+#modal-admin,
+#modal-eventos {
   position: fixed;
   left: 50%;
   top: 50%;
@@ -81,12 +85,32 @@ footer nav ul li {
   border-radius: 0.5rem;
 }
 
+#modal-eventos {
+  height: 70vh;
+  width: 50vw;
+}
+
+#form-reservar {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2rem;
+}
+
+#form-reservar div {
+  width: 80%;
+}
+
 #fade-admin.hide-admin,
-#modal-admin.hide-admin {
+#modal-admin.hide-admin,
+#fade-eventos.hide-eventos,
+#modal-eventos.hide-eventos {
   opacity: 0;
   pointer-events: none;
 }
 
-#modal-admin.hide-admin {
-  top: 0
+#modal-admin.hide-admin,
+#modal-eventos.hide-eventos {
+  top: 0;
 }
