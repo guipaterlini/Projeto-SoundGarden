@@ -35,5 +35,7 @@ btnExcluirEvento.addEventListener("click", function (event) {
       window.location.replace("./admin.html");
       alert("Evento " + nomeEvento + " deletado com sucesso!");
     })
-    .catch((error) => console.log("error", error));
+    .catch((error) => {
+      console.error("Erro ao processar a resposta do servidor: ", error);
+    });
 });
