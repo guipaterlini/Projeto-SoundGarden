@@ -2,6 +2,15 @@ import { endpointReserva } from "./utils/apiEndpoint.js";
 import { lerFormulario } from "./utils/lerFormulario.js";
 
 export const criarReserva = function (idEvento, objectReserva) {
+  const modalEventos = document.querySelector("#modal-eventos");
+  const fadeEventos = document.querySelector("#fade-eventos");
+
+  const toggleModalEventos = () => {
+    [modalEventos, fadeEventos].forEach((element) =>
+      element.classList.toggle("hide-eventos")
+    );
+  };
+
   var formNovaRserva = document.querySelector("#form-reservar");
 
   const inputs = formNovaRserva.elements;
@@ -19,7 +28,7 @@ export const criarReserva = function (idEvento, objectReserva) {
     .then((response) => response.json())
     .then(() => {
       alert("Reserva feita com sucesso!");
-      console.log(objectReserva);
+      toggleModalEventos();
     })
     .catch((error) => {
       console.error("Erro ao processar a resposta do servidor: ", error);
