@@ -8,7 +8,11 @@ export const exibirModalAdmin = function () {
   const closeModalButtonAdmin = document.querySelector("#close-modal-admin");
   const modalAdmin = document.querySelector("#modal-admin");
   const fadeAdmin = document.querySelector("#fade-admin");
+  const tbodyReservas = document.querySelector("#tbody-reservas");
   let idEvento;
+  let reserva;
+  tbodyReservas.innerHTML = "";
+
 
   const toggleModalAdmin = () => {
     [modalAdmin, fadeAdmin].forEach((el) => el.classList.toggle("hide-admin"));
@@ -17,15 +21,15 @@ export const exibirModalAdmin = function () {
   [closeModalButtonAdmin, fadeAdmin].forEach((el) => {
     el.addEventListener("click", function () {
       toggleModalAdmin();
-      window.location.reload();
+      reserva = {};
     });
   });
 
   const mostrarReservas = function (data) {
-    const tbodyReservas = document.querySelector("#tbody-reservas");
+    tbodyReservas.innerHTML = "";
 
     for (let i = 0; i < data.length; i++) {
-      const reserva = data[i];
+      reserva = data[i];
 
       const reservasEventos = document.createElement("tr");
       reservasEventos.innerHTML = `
@@ -70,11 +74,17 @@ export const exibirModalAdmin = function () {
 // Excluir Reserva
 
 const excluirReservaById = function () {
+  const modalAdmin = document.querySelector("#modal-admin");
+  const fadeAdmin = document.querySelector("#fade-admin");
   const btnExcluirReserva = document.querySelectorAll("#btn-excluir-reserva");
+
+  const toggleModalAdmin = () => {
+    [modalAdmin, fadeAdmin].forEach((el) => el.classList.toggle("hide-admin"));
+  };
+
   btnExcluirReserva.forEach((button) => {
     button.addEventListener("click", (event) => {
       let idReserva = event.target.getAttribute("name");
-      console.log(idReserva); // atribuição do valor do id
       excluirReserva(idReserva);
     });
   });
@@ -89,8 +99,8 @@ const excluirReservaById = function () {
     })
       .then((response) => response.text())
       .then(() => {
+        toggleModalAdmin();
         alert("Reserva deletada com sucesso!");
-        window.location.reload();
       })
       .catch((error) => {
         console.error("Erro ao processar a resposta do servidor: ", error);
